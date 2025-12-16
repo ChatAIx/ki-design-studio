@@ -10,18 +10,19 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Video/Animated Background */}
+      {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-10" />
+        {/* Black overlay with 65% opacity */}
+        <div className="absolute inset-0 bg-black/65 z-10" />
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover blur-[2px] contrast-[0.85] saturate-[0.8]"
         >
           <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-connections-loop-background-28377-large.mp4"
+            src="/videos/hero-background.mp4"
             type="video/mp4"
           />
         </video>
