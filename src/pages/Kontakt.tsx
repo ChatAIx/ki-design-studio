@@ -22,7 +22,7 @@ const Kontakt = () => {
             <div className="w-16 h-px bg-primary mb-12" />
             
             <div className="space-y-8 text-lg md:text-xl text-muted-foreground leading-relaxed mb-12">
-              <p>Sie möchten erfahren, wie ein KI-Chatbot Ihre Website übersichtlicher macht und Ihre Kundenkommunikation verbessern kann?
+              <p>Sie möchten erfahren, wie ein KI-Chatbot Ihre Website übersichtlicher macht und Ihre Kundenkommunikation verbessern kann? 
 
 
 Gerne können wir Ihr Anliegen gemeinsam besprechen.</p>
