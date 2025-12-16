@@ -27,7 +27,16 @@ const Leistungen = () => {
             </p>
             
             <ul className="space-y-6">
-              {services.map((service, index) => {})}
+              {services.map((service, index) => (
+                <li 
+                  key={index}
+                  className="flex items-start gap-4 text-lg md:text-xl text-foreground/90"
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span>{service}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
