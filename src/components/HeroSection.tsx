@@ -1,5 +1,4 @@
 import { ChevronDown } from 'lucide-react';
-import heroLogo from '@/assets/innovaone-logo.png';
 
 const HeroSection = () => {
   const scrollToContent = () => {
@@ -33,11 +32,9 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 lg:px-12 text-center max-w-5xl">
-        <img 
-          src={heroLogo} 
-          alt="InnovaOne Intelligence" 
-          className="h-16 md:h-24 lg:h-32 w-auto mx-auto animate-fade-up"
-        />
+        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-foreground animate-fade-up">
+          Mein Firmenname
+        </h1>
         
         <div className="w-24 h-px bg-primary mx-auto my-8 animate-line-grow origin-left" />
         
