@@ -9,7 +9,7 @@ const Leistungen = () => {
   } = useInView({
     threshold: 0.2
   });
-  const services = ['KI-Chatbots für Websites', 'Strukturierung von Website-Inhalten', 'Automatisierte Beantwortung häufiger Fragen', 'Unterstützung bei Lead-Generierung', 'Individuelle Anpassung an bestehende Systeme'];
+  const services = ['KI-Chatbots für Websites', 'Automatisierte Beantwortung häufiger Fragen', 'Saubere, einfache Integration in bestehende Websites'];
   return <div className="min-h-screen bg-background">
       <Navigation />
       
