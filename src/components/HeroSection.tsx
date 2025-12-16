@@ -9,9 +9,9 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
       {/* Video Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-[#0a0a0a]">
         {/* Black overlay with 65% opacity */}
         <div className="absolute inset-0 bg-black/65 z-10" />
         <video
@@ -19,6 +19,8 @@ const HeroSection = () => {
           muted
           loop
           playsInline
+          preload="auto"
+          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%230a0a0a' width='1' height='1'/%3E%3C/svg%3E"
           className="w-full h-full object-cover blur-[2px] contrast-[0.85] saturate-[0.8]"
         >
           <source
