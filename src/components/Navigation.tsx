@@ -31,7 +31,8 @@ const Navigation = () => {
           </Link>
 
           <div className="hidden md:flex items-center gap-10">
-            {navItems.map(item => <Link key={item.path} to={item.path} className={`relative text-sm tracking-widest uppercase transition-colors duration-300 ${location.pathname === item.path ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}>5KONTAKT{item.label}
+            {navItems.map(item => <Link key={item.path} to={item.path} className={`relative text-sm tracking-widest uppercase transition-colors duration-300 ${location.pathname === item.path ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}>
+                {item.label}
                 {location.pathname === item.path && <span className="absolute -bottom-1 left-0 w-full h-px bg-primary" />}
               </Link>)}
           </div>

@@ -21,14 +21,10 @@ const Kontakt = () => {
             
             <div className="w-16 h-px bg-primary mb-12" />
             
-            <div className="space-y-8 text-lg md:text-xl text-muted-foreground leading-relaxed mb-12">
-              <p>Sie möchten erfahren, wie ein KI-Chatbot Ihre Website übersichtlicher macht und Ihre Kundenkommunikation verbessern kann? 
-
-
-Gerne können wir Ihr Anliegen gemeinsam besprechen.</p>
+            <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed mb-12">
+              <p>Sie möchten erfahren, wie ein KI-Chatbot Ihre Website übersichtlicher macht und Ihre Kundenkommunikation verbessern kann?</p>
               
-              <p>
-            </p>
+              <p>Gerne können wir Ihr Anliegen gemeinsam besprechen.</p>
             </div>
             
             <a href="mailto:kontakt@mein-firmenname.de" className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-medium tracking-wide transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20">
