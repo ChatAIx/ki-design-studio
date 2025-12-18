@@ -23,7 +23,7 @@ const WorkSection = () => {
   return (
     <section 
       ref={ref}
-      className="relative py-32 md:py-40 bg-background"
+      className="relative py-32 md:py-40 section-alt"
     >
       {/* Subtle top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
