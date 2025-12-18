@@ -86,9 +86,9 @@ export default {
         "slide-up": "slide-up 0.6s ease-out forwards",
       },
       boxShadow: {
-        'glow': '0 0 60px hsl(38 70% 55% / 0.15)',
-        'card': '0 4px 24px hsl(0 0% 0% / 0.3)',
-        'card-hover': '0 8px 32px hsl(0 0% 0% / 0.4), 0 0 40px hsl(38 70% 55% / 0.1)',
+        'soft': '0 4px 20px hsl(220 15% 8% / 0.25)',
+        'card': '0 4px 24px hsl(220 15% 8% / 0.2)',
+        'card-hover': '0 8px 32px hsl(220 15% 8% / 0.3), 0 0 40px hsl(32 35% 58% / 0.08)',
       },
     },
   },
