@@ -1,6 +1,9 @@
 import { ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const HeroSection = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   const scrollToContent = () => {
     window.scrollTo({
       top: window.innerHeight,
@@ -8,26 +11,38 @@ const HeroSection = () => {
     });
   };
 
+  useEffect(() => {
+    // Preload video
+    const video = document.querySelector('video');
+    if (video) {
+      video.addEventListener('loadeddata', () => setVideoLoaded(true));
+    }
+  }, []);
+
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Video Background */}
-      <div className="absolute inset-0 z-0 bg-[#0a0a0a]">
-        {/* Black overlay with 65% opacity */}
-        <div className="absolute inset-0 bg-black/65 z-10" />
+      <div className="absolute inset-0 z-0">
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/70 via-background/50 to-background/80" />
+        {/* Subtle radial gradient for depth */}
+        <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_70%)]" />
         <video
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%230a0a0a' width='1' height='1'/%3E%3C/svg%3E"
-          className="w-full h-full object-cover blur-[2px] contrast-[0.85] saturate-[0.8]"
+          className={`w-full h-full object-cover brightness-[0.6] contrast-[0.9] saturate-[0.85] transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onLoadedData={() => setVideoLoaded(true)}
         >
           <source
             src="/videos/hero-background.mp4"
             type="video/mp4"
           />
         </video>
+        {/* Fallback background when video is loading */}
+        <div className={`absolute inset-0 bg-background transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`} />
       </div>
 
       {/* Content */}
@@ -53,7 +68,7 @@ const HeroSection = () => {
         className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 animate-scroll-indicator cursor-pointer group"
         aria-label="Nach unten scrollen"
       >
-        <div className="flex flex-col items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors">
+        <div className="flex flex-col items-center gap-2 text-muted-foreground group-hover:text-primary transition-colors duration-300">
           <span className="text-xs tracking-[0.3em] uppercase">Scroll</span>
           <ChevronDown className="w-5 h-5" />
         </div>
