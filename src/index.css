@@ -6,62 +6,57 @@
 
 @layer base {
   :root {
-    /* Modern Light-Dark Palette - Soft Charcoal & Warm Neutrals */
-    --background: 220 10% 12%;
-    --foreground: 220 10% 96%;
+    /* LIGHT MODE - Clean Professional Palette */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 20%;
 
-    --card: 220 8% 16%;
-    --card-foreground: 220 10% 96%;
+    --card: 220 15% 98%;
+    --card-foreground: 220 15% 20%;
 
-    --popover: 220 8% 14%;
-    --popover-foreground: 220 10% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
 
-    /* Warm muted accent - champagne/sand tone */
-    --primary: 32 35% 58%;
-    --primary-foreground: 220 10% 12%;
+    /* Warm elegant accent - muted champagne/sand */
+    --primary: 32 45% 48%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 8% 20%;
-    --secondary-foreground: 220 10% 92%;
+    --secondary: 220 10% 94%;
+    --secondary-foreground: 220 15% 25%;
 
-    --muted: 220 6% 24%;
-    --muted-foreground: 220 8% 58%;
+    --muted: 220 10% 96%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 32 35% 58%;
-    --accent-foreground: 220 10% 12%;
+    --accent: 32 45% 48%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 65% 55%;
+    --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 8% 22%;
-    --input: 220 8% 20%;
-    --ring: 32 35% 58%;
+    --border: 220 15% 88%;
+    --input: 220 15% 90%;
+    --ring: 32 45% 48%;
 
     --radius: 0.5rem;
 
-    /* Custom tokens - Lighter, more breathable */
-    --surface-elevated: 220 8% 18%;
-    --surface-overlay: 220 10% 14%;
-    --surface-light: 220 6% 94%;
-    --hero-overlay: 220 10% 12%;
-    --text-primary: 220 10% 96%;
-    --text-secondary: 220 8% 72%;
-    --text-muted: 220 6% 52%;
+    /* Custom tokens - Light theme */
+    --surface-elevated: 0 0% 100%;
+    --surface-overlay: 220 15% 97%;
+    --surface-alt: 220 10% 95%;
+    --hero-overlay: 0 0% 100%;
+    --text-primary: 220 15% 18%;
+    --text-secondary: 220 10% 35%;
+    --text-muted: 220 8% 50%;
     
-    /* Refined gradients */
-    --gradient-accent: linear-gradient(135deg, hsl(32 35% 58%), hsl(28 30% 48%));
-    --gradient-subtle: linear-gradient(180deg, hsl(220 10% 12%), hsl(220 8% 16%));
-    --gradient-card: linear-gradient(145deg, hsl(220 8% 18%), hsl(220 8% 14%));
-    --gradient-light: linear-gradient(180deg, hsl(220 6% 94%), hsl(220 8% 88%));
+    /* Light theme gradients */
+    --gradient-accent: linear-gradient(135deg, hsl(32 45% 48%), hsl(28 40% 42%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 15% 97%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 15% 98%));
+    --gradient-section-alt: linear-gradient(180deg, hsl(220 10% 95%), hsl(220 10% 97%));
     
-    /* Softer shadows */
-    --shadow-soft: 0 4px 20px hsl(220 15% 8% / 0.25);
-    --shadow-card: 0 4px 24px hsl(220 15% 8% / 0.2);
-    --shadow-card-hover: 0 8px 32px hsl(220 15% 8% / 0.3), 0 0 40px hsl(32 35% 58% / 0.08);
-  }
-
-  .dark {
-    --background: 220 10% 12%;
-    --foreground: 220 10% 96%;
+    /* Soft light shadows */
+    --shadow-soft: 0 2px 12px hsl(220 20% 20% / 0.06);
+    --shadow-card: 0 4px 20px hsl(220 20% 20% / 0.08);
+    --shadow-card-hover: 0 8px 30px hsl(220 20% 20% / 0.12);
   }
 }
 
@@ -89,28 +84,19 @@
   }
 
   .card-elevated {
-    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--surface-overlay)));
+    background: hsl(var(--card));
     box-shadow: var(--shadow-card);
-    @apply border border-border/40 transition-all duration-500;
+    @apply border border-border/60 transition-all duration-500;
   }
 
   .card-elevated:hover {
     box-shadow: var(--shadow-card-hover);
-    @apply border-primary/40;
+    @apply border-primary/50;
   }
 
-  /* Light section variant for contrast */
-  .section-light {
-    background: hsl(var(--surface-light));
-    color: hsl(220 10% 18%);
-  }
-
-  .section-light .text-foreground {
-    color: hsl(220 10% 15%);
-  }
-
-  .section-light .text-muted-foreground {
-    color: hsl(220 8% 40%);
+  /* Alternate section background */
+  .section-alt {
+    background: hsl(var(--surface-alt));
   }
 
   .text-balance {
