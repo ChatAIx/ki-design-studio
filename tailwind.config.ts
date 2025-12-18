@@ -51,6 +51,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        surface: {
+          elevated: "hsl(var(--surface-elevated))",
+          overlay: "hsl(var(--surface-overlay))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -66,10 +70,25 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "slide-up": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.6s ease-out forwards",
+        "slide-up": "slide-up 0.6s ease-out forwards",
+      },
+      boxShadow: {
+        'glow': '0 0 60px hsl(38 70% 55% / 0.15)',
+        'card': '0 4px 24px hsl(0 0% 0% / 0.3)',
+        'card-hover': '0 8px 32px hsl(0 0% 0% / 0.4), 0 0 40px hsl(38 70% 55% / 0.1)',
       },
     },
   },
