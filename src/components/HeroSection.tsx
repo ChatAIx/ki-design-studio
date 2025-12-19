@@ -23,17 +23,17 @@ const HeroSection = () => {
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        {/* Light overlay for bright, modern feel */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/80 via-background/70 to-background/90" />
-        {/* Soft radial fade */}
-        <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_80%)]" />
+        {/* Subtle neutral overlay - light gray gradient for readability while keeping video visible */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/50 via-background/40 to-background/60" />
+        {/* Soft radial fade at edges */}
+        <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_90%)]" />
         <video
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          className={`w-full h-full object-cover brightness-[1.1] contrast-[0.9] saturate-[0.8] transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`w-full h-full object-cover brightness-[0.95] contrast-[1.1] saturate-[0.9] transition-opacity duration-300 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
           onLoadedData={() => setVideoLoaded(true)}
         >
           <source
@@ -42,7 +42,7 @@ const HeroSection = () => {
           />
         </video>
         {/* Fallback background when video is loading */}
-        <div className={`absolute inset-0 bg-background transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`} />
+        <div className={`absolute inset-0 bg-background transition-opacity duration-300 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`} />
       </div>
 
       {/* Content */}
