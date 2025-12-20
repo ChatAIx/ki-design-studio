@@ -13,7 +13,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background with blur */}
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
@@ -22,7 +22,7 @@ const HeroSection = () => {
           playsInline
           preload="auto"
           onLoadedData={() => setVideoLoaded(true)}
-          className={`w-full h-full object-cover transition-opacity duration-700 ${
+          className={`w-full h-full object-cover blur-[6px] scale-105 transition-opacity duration-700 ${
             videoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -32,31 +32,31 @@ const HeroSection = () => {
           />
         </video>
         
-        {/* Subtle dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/40 via-neutral-900/30 to-neutral-900/50" />
+        {/* Soft neutral overlay - not white, not dark */}
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-500/25 via-neutral-600/20 to-neutral-700/30" />
       </div>
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 lg:px-12 text-center max-w-5xl">
         <h1 
           className="font-serif text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white animate-fade-up"
-          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
+          style={{ textShadow: '0 2px 30px rgba(0,0,0,0.5), 0 4px 60px rgba(0,0,0,0.3)' }}
         >
           Mein Firmenname
         </h1>
         
-        <div className="w-24 h-px bg-white/60 mx-auto my-8 animate-line-grow origin-left" />
+        <div className="w-24 h-px bg-white/80 mx-auto my-8 animate-line-grow origin-left" />
         
         <p 
-          className="text-lg md:text-xl lg:text-2xl font-normal text-white/95 leading-relaxed animate-fade-up-delay-1 max-w-3xl mx-auto"
-          style={{ textShadow: '0 1px 10px rgba(0,0,0,0.25)' }}
+          className="text-lg md:text-xl lg:text-2xl font-medium text-white leading-relaxed animate-fade-up-delay-1 max-w-3xl mx-auto"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.4), 0 4px 40px rgba(0,0,0,0.2)' }}
         >
           KI-Chatbots, die Websites strukturieren, Kunden entlasten und Prozesse vereinfachen.
         </p>
         
         <p 
-          className="mt-8 text-base md:text-lg text-white/85 leading-relaxed animate-fade-up-delay-2 max-w-2xl mx-auto"
-          style={{ textShadow: '0 1px 8px rgba(0,0,0,0.2)' }}
+          className="mt-8 text-base md:text-lg text-white/95 leading-relaxed animate-fade-up-delay-2 max-w-2xl mx-auto"
+          style={{ textShadow: '0 1px 15px rgba(0,0,0,0.35)' }}
         >
           Ich entwickle KI-gestützte Chatbots, die Unternehmen dabei helfen, ihre Website übersichtlicher zu gestalten, Besucher gezielt zu führen und wiederkehrende Anfragen effizient zu automatisieren.
         </p>
