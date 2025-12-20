@@ -31,14 +31,19 @@ const Navigation = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled 
             ? 'bg-background/95 backdrop-blur-md border-b border-border/50' 
-            : 'bg-transparent'
+            : 'bg-neutral-900/20 backdrop-blur-[2px]'
         }`}
       >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             <Link 
               to="/" 
-              className="font-serif text-xl tracking-wide text-foreground hover:text-primary transition-colors duration-300"
+              className={`font-serif text-xl tracking-wide transition-colors duration-300 ${
+                scrolled 
+                  ? 'text-foreground hover:text-primary' 
+                  : 'text-white hover:text-white/80'
+              }`}
+              style={!scrolled ? { textShadow: '0 1px 10px rgba(0,0,0,0.3)' } : undefined}
             >
               Mein Firmenname
             </Link>
@@ -49,16 +54,21 @@ const Navigation = () => {
                   key={item.path}
                   to={item.path}
                   className={`relative text-sm tracking-[0.15em] uppercase transition-colors duration-300 py-2 ${
-                    location.pathname === item.path
-                      ? 'text-primary'
-                      : 'text-muted-foreground hover:text-foreground'
+                    scrolled
+                      ? location.pathname === item.path
+                        ? 'text-primary'
+                        : 'text-muted-foreground hover:text-foreground'
+                      : location.pathname === item.path
+                        ? 'text-white'
+                        : 'text-white/80 hover:text-white'
                   }`}
+                  style={!scrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.3)' } : undefined}
                 >
                   {item.label}
                   <span 
-                    className={`absolute -bottom-0.5 left-0 h-px bg-primary transition-all duration-300 ${
-                      location.pathname === item.path ? 'w-full' : 'w-0'
-                    }`}
+                    className={`absolute -bottom-0.5 left-0 h-px transition-all duration-300 ${
+                      scrolled ? 'bg-primary' : 'bg-white'
+                    } ${location.pathname === item.path ? 'w-full' : 'w-0'}`}
                   />
                 </Link>
               ))}
@@ -67,7 +77,12 @@ const Navigation = () => {
             {/* Mobile menu button */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-foreground p-2 hover:text-primary transition-colors duration-300"
+              className={`md:hidden p-2 transition-colors duration-300 ${
+                scrolled 
+                  ? 'text-foreground hover:text-primary' 
+                  : 'text-white hover:text-white/80'
+              }`}
+              style={!scrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.3)' } : undefined}
               aria-label="Menü öffnen"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
