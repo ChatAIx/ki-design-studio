@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '@/assets/logo.png';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -39,13 +38,14 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-20">
             <Link 
               to="/" 
-              className="flex items-center transition-opacity duration-300 hover:opacity-80"
+              className={`font-serif text-xl tracking-wide transition-colors duration-300 ${
+                scrolled 
+                  ? 'text-foreground hover:text-primary' 
+                  : 'text-white hover:text-white/80'
+              }`}
+              style={!scrolled ? { textShadow: '0 1px 10px rgba(0,0,0,0.3)' } : undefined}
             >
-              <img 
-                src={logo} 
-                alt="Mein Firmenname" 
-                className="h-10 w-auto object-contain md:h-12"
-              />
+              Mein Firmenname
             </Link>
 
             <div className="hidden md:flex items-center gap-12">
