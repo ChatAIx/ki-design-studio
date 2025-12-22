@@ -38,12 +38,20 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 lg:px-12 text-center max-w-5xl">
-        <h1 
-          className="font-serif text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white animate-fade-up"
-          style={{ textShadow: '0 2px 30px rgba(0,0,0,0.5), 0 4px 60px rgba(0,0,0,0.3)' }}
-        >
-          Mein Firmenname
-        </h1>
+        <div className="animate-fade-up text-center">
+          <h1 
+            className="font-serif text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white"
+            style={{ textShadow: '0 2px 30px rgba(0,0,0,0.5), 0 4px 60px rgba(0,0,0,0.3)' }}
+          >
+            InnovaOne
+          </h1>
+          <p 
+            className="font-sans text-lg md:text-2xl lg:text-3xl font-normal tracking-[0.35em] text-neutral-300 mt-2"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}
+          >
+            INTELLIGENCE
+          </p>
+        </div>
         
         <div className="w-24 h-px bg-white/80 mx-auto my-8 animate-line-grow origin-left" />
         
