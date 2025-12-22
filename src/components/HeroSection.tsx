@@ -46,8 +46,8 @@ const HeroSection = () => {
             InnovaOne
           </h1>
           <p 
-            className="font-sans text-lg md:text-2xl lg:text-3xl font-normal tracking-[0.35em] text-neutral-300 mt-2"
-            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}
+            className="font-sans text-lg md:text-2xl lg:text-3xl font-medium tracking-[0.35em] text-neutral-200 mt-2"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
           >
             INTELLIGENCE
           </p>
