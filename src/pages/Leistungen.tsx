@@ -1,8 +1,8 @@
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import { useInView } from '@/hooks/useInView';
-import { Bot, MessageSquare, Puzzle, HeadphonesIcon, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { useInView } from "@/hooks/useInView";
+import { Bot, MessageSquare, Puzzle, HeadphonesIcon, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -16,7 +16,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon, title, shortDescription, details, isExpanded, onToggle, delay }: ServiceCardProps) => {
   return (
-    <div 
+    <div
       className="card-elevated rounded-lg overflow-hidden cursor-pointer group"
       onClick={onToggle}
       style={{ animationDelay: `${delay}ms` }}
@@ -24,29 +24,27 @@ const ServiceCard = ({ icon, title, shortDescription, details, isExpanded, onTog
       <div className="p-8">
         {/* Icon */}
         <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300">
-          <div className="text-primary">
-            {icon}
-          </div>
+          <div className="text-primary">{icon}</div>
         </div>
-        
+
         {/* Title */}
         <h3 className="font-serif text-2xl text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
           {title}
         </h3>
-        
+
         {/* Short Description */}
-        <p className="text-muted-foreground leading-relaxed mb-6">
-          {shortDescription}
-        </p>
-        
+        <p className="text-muted-foreground leading-relaxed mb-6">{shortDescription}</p>
+
         {/* Expand/Collapse indicator */}
         <button className="inline-flex items-center gap-2 text-primary text-sm font-medium">
-          <span>{isExpanded ? 'Weniger anzeigen' : 'Mehr erfahren'}</span>
-          <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`} />
+          <span>{isExpanded ? "Weniger anzeigen" : "Mehr erfahren"}</span>
+          <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? "rotate-90" : ""}`} />
         </button>
-        
+
         {/* Expanded Details */}
-        <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? 'max-h-96 mt-6 pt-6 border-t border-border/50' : 'max-h-0'}`}>
+        <div
+          className={`overflow-hidden transition-all duration-500 ${isExpanded ? "max-h-96 mt-6 pt-6 border-t border-border/50" : "max-h-0"}`}
+        >
           <ul className="space-y-3">
             {details.map((detail, index) => (
               <li key={index} className="flex items-start gap-3 text-muted-foreground">
@@ -68,46 +66,46 @@ const Leistungen = () => {
   const services = [
     {
       icon: <Bot className="w-7 h-7" />,
-      title: 'KI-Chatbots für Websites',
-      shortDescription: 'Intelligente Assistenten, die Ihre Website aufwerten und Besuchern sofort weiterhelfen.',
+      title: "KI-Chatbots für Websites",
+      shortDescription: "Intelligente Assistenten, die Ihre Website aufwerten und Besuchern sofort weiterhelfen.",
       details: [
-        'Rund-um-die-Uhr Verfügbarkeit für Ihre Kunden',
-        'Natürliche Konversationen in deutscher Sprache',
-        'Personalisierte Antworten basierend auf Ihrem Unternehmen',
-        'Entlastung Ihres Support-Teams durch automatisierte Erstberatung',
+        "Rund-um-die-Uhr Verfügbarkeit für Ihre Kunden",
+        "Natürliche Konversationen in deutscher Sprache",
+        "Personalisierte Antworten basierend auf Ihrem Unternehmen",
+        "Entlastung Ihres Support-Teams durch automatisierte Erstberatung",
       ],
     },
     {
       icon: <MessageSquare className="w-7 h-7" />,
-      title: 'Automatisierte FAQ-Beantwortung',
-      shortDescription: 'Gemeinsam definieren wir häufig gestellte Fragen und automatisieren die Antworten.',
+      title: "Automatisierte FAQ-Beantwortung",
+      shortDescription: "Gemeinsam definieren wir häufig gestellte Fragen und automatisieren die Antworten.",
       details: [
-        'Individuelle Analyse Ihrer häufigsten Kundenanfragen',
-        'Gemeinsame Definition der Fragen und passenden Antworten',
-        'Kontinuierliche Optimierung basierend auf Nutzerverhalten',
-        'Reduzierung wiederkehrender Support-Anfragen um bis zu 70%',
+        "Individuelle Analyse Ihrer häufigsten Kundenanfragen",
+        "Gemeinsame Definition der Fragen und passenden Antworten",
+        "Kontinuierliche Optimierung basierend auf Nutzerverhalten",
+        "Reduzierung wiederkehrender Support-Anfragen",
       ],
     },
     {
       icon: <Puzzle className="w-7 h-7" />,
-      title: 'Einfache Integration',
-      shortDescription: 'Saubere, unkomplizierte Einbindung in Ihre bestehende Website ohne technischen Aufwand.',
+      title: "Einfache Integration",
+      shortDescription: "Saubere, unkomplizierte Einbindung in Ihre bestehende Website ohne technischen Aufwand.",
       details: [
-        'Keine komplexen technischen Anforderungen für Sie',
-        'Kompatibel mit allen gängigen Website-Systemen',
-        'Schnelle Implementierung innerhalb weniger Tage',
-        'Nahtlose Anpassung an Ihr bestehendes Design',
+        "Keine komplexen technischen Anforderungen für Sie",
+        "Kompatibel mit allen gängigen Website-Systemen",
+        "Schnelle Implementierung innerhalb weniger Tage",
+        "Nahtlose Anpassung an Ihr bestehendes Design",
       ],
     },
     {
       icon: <HeadphonesIcon className="w-7 h-7" />,
-      title: 'Support & Weiterentwicklung',
-      shortDescription: 'Kontinuierliche Betreuung, Updates und Hilfe bei Anpassungen oder Problemen.',
+      title: "Support & Weiterentwicklung",
+      shortDescription: "Kontinuierliche Betreuung, Updates und Hilfe bei Anpassungen oder Problemen.",
       details: [
-        'Laufender technischer Support bei Fragen oder Problemen',
-        'Regelmässige Updates und Verbesserungen',
-        'Anpassungen an neue Anforderungen Ihres Unternehmens',
-        'Persönlicher Ansprechpartner für alle Anliegen',
+        "Laufender technischer Support bei Fragen oder Problemen",
+        "Regelmässige Updates und Verbesserungen",
+        "Anpassungen an neue Anforderungen Ihres Unternehmens",
+        "Persönlicher Ansprechpartner für alle Anliegen",
       ],
     },
   ];
@@ -115,24 +113,25 @@ const Leistungen = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main className="pt-32 pb-24">
         <div ref={ref} className="container mx-auto px-6 lg:px-12 max-w-6xl">
-          <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div
+            className={`transition-all duration-1000 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          >
             {/* Section Header */}
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-px bg-primary" />
               <span className="text-primary text-sm tracking-[0.2em] uppercase font-medium">Leistungen</span>
             </div>
-            
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-foreground mb-8">
-              Was ich anbiete
-            </h1>
-            
+
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-foreground mb-8">Was ich anbiete</h1>
+
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-16 max-w-3xl">
-              Individuelle KI-Chatbot-Lösungen für Unternehmen, die ihre Website optimieren und ihre Kundenkommunikation automatisieren möchten.
+              Individuelle KI-Chatbot-Lösungen für Unternehmen, die ihre Website optimieren und ihre Kundenkommunikation
+              automatisieren möchten.
             </p>
-            
+
             {/* Services Grid */}
             <div className="grid md:grid-cols-2 gap-6">
               {services.map((service, index) => (
@@ -148,7 +147,7 @@ const Leistungen = () => {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
