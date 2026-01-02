@@ -66,7 +66,7 @@ const Leistungen = () => {
   const services = [
     {
       icon: <Bot className="w-7 h-7" />,
-      title: "KI-Chatbots für Websites",
+      title: "KI-Chatbots für Websiten",
       shortDescription: "Intelligente Assistenten, die Ihre Website aufwerten und Besuchern sofort weiterhelfen.",
       details: [
         "Rund-um-die-Uhr Verfügbarkeit für Ihre Kunden",
