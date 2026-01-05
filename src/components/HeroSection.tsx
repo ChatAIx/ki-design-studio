@@ -1,7 +1,6 @@
 import { ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+
 const HeroSection = () => {
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const scrollToContent = () => {
     window.scrollTo({
       top: window.innerHeight,
@@ -11,7 +10,7 @@ const HeroSection = () => {
   return <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background with blur */}
       <div className="absolute inset-0 z-0">
-        <video autoPlay muted loop playsInline preload="auto" onLoadedData={() => setVideoLoaded(true)} className={`w-full h-full object-cover blur-[6px] scale-105 transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <video autoPlay muted loop playsInline preload="auto" className="w-full h-full object-cover blur-[6px] scale-105">
           <source src="/videos/hero-new.mp4" type="video/mp4" />
         </video>
         
