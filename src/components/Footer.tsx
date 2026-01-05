@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import innovaoneLogo from '@/assets/innovaone-logo.png';
 
 const Footer = () => {
   return (
@@ -11,9 +12,9 @@ const Footer = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="font-serif text-xl text-foreground hover:text-primary transition-colors duration-300"
+            className="hover:opacity-80 transition-opacity duration-300"
           >
-            Mein Firmenname
+            <img src={innovaoneLogo} alt="InnovaOne Intelligence" className="h-12 w-auto" />
           </Link>
           
           {/* Navigation */}

@@ -143,10 +143,10 @@ const Kontakt = () => {
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">E-Mail</p>
                         <a 
-                          href="mailto:kontakt@meinfirmenname.ch"
+                          href="mailto:info.innovaone@gmail.com"
                           className="text-foreground hover:text-primary transition-colors duration-300"
                         >
-                          kontakt@meinfirmenname.ch
+                          info.innovaone@gmail.com
                         </a>
                       </div>
                     </div>
