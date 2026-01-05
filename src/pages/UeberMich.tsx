@@ -1,12 +1,14 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { useInView } from '@/hooks/useInView';
-
 const UeberMich = () => {
-  const { ref, isInView } = useInView({ threshold: 0.2 });
-
-  return (
-    <div className="min-h-screen bg-background">
+  const {
+    ref,
+    isInView
+  } = useInView({
+    threshold: 0.2
+  });
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-32 pb-24">
@@ -34,9 +36,7 @@ const UeberMich = () => {
                     Ich bin 17 Jahre alt und absolviere eine Lehre als Plattforminformatiker mit Berufsmaturität (BM) und beschäftige mich intensiv mit modernen KI-Systemen und deren praktischem Einsatz im Web-Umfeld.
                   </p>
                   
-                  <p>
-                    Mein Fokus liegt auf der sinnvollen Integration von KI-Chatbots in Websites, um Inhalte übersichtlicher darzustellen und die Kommunikation zwischen Unternehmen und Kunden zu vereinfachen.
-                  </p>
+                  <p>Mein Fokus liegt auf der sinnvollen Integration von KI-Chatbots in Websiten, um Inhalte übersichtlicher darzustellen und die Kommunikation zwischen Unternehmen und Kunden zu vereinfachen.</p>
                   
                   <p>
                     Dabei lege ich grossen Wert auf klare Strukturen, saubere technische Umsetzung und zuverlässige Lösungen.
@@ -49,17 +49,10 @@ const UeberMich = () => {
                 <div className="card-elevated rounded-lg p-8">
                   <h3 className="font-serif text-xl text-foreground mb-6">Fokus</h3>
                   <ul className="space-y-4">
-                    {[
-                      'KI-Chatbot-Entwicklung',
-                      'Website-Integration',
-                      'Automatisierung',
-                      'Technische Beratung',
-                    ].map((item, index) => (
-                      <li key={index} className="flex items-center gap-3 text-muted-foreground">
+                    {['KI-Chatbot-Entwicklung', 'Website-Integration', 'Automatisierung', 'Technische Beratung'].map((item, index) => <li key={index} className="flex items-center gap-3 text-muted-foreground">
                         <span className="w-2 h-2 rounded-full bg-primary" />
                         {item}
-                      </li>
-                    ))}
+                      </li>)}
                   </ul>
                 </div>
               </div>
@@ -69,8 +62,6 @@ const UeberMich = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default UeberMich;
