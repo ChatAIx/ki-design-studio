@@ -14,7 +14,7 @@ const Footer = () => {
             to="/" 
             className="hover:opacity-80 transition-opacity duration-300"
           >
-            <img src={innovaoneLogo} alt="InnovaOne Intelligence" className="h-10 w-auto" />
+            <img src={innovaoneLogo} alt="InnovaOne Intelligence" className="w-[110px] md:w-[160px] h-auto" />
           </Link>
           
           {/* Navigation */}
