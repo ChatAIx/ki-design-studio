@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import chatImage from '@/assets/chat-demo-background.jpg';
 
 interface ChatMessage {
@@ -42,12 +43,12 @@ const ChatAnimationSection = () => {
     if (visibleStep < messageSequence.length) {
       const timer = setTimeout(() => {
         setVisibleStep(prev => prev + 1);
-      }, 1200);
+      }, 1300);
       return () => clearTimeout(timer);
     } else {
       const pauseTimer = setTimeout(() => {
         setIsResetting(true);
-      }, 3000);
+      }, 2500);
       return () => clearTimeout(pauseTimer);
     }
   }, [visibleStep, isResetting]);
@@ -65,10 +66,25 @@ const ChatAnimationSection = () => {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-6 lg:px-12 max-w-6xl">
+    <section className="relative py-16 md:py-24">
+      {/* Subtle vertical gradient background */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(
+            180deg, 
+            hsl(var(--background)) 0%, 
+            hsl(var(--muted) / 0.3) 35%,
+            hsl(var(--muted) / 0.4) 50%,
+            hsl(var(--muted) / 0.3) 65%,
+            hsl(var(--background)) 100%
+          )`
+        }}
+      />
+      
+      <div className="container relative mx-auto px-6 lg:px-12 max-w-6xl">
         <div 
-          className={`grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-8 items-center transition-opacity duration-500 ${
+          className={`grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-10 items-center transition-opacity duration-500 ${
             isResetting ? 'opacity-0' : 'opacity-100'
           }`}
         >
@@ -77,10 +93,10 @@ const ChatAnimationSection = () => {
             {botMessages.map((message, index) => (
               <div
                 key={index}
-                className={`max-w-[280px] px-4 py-3 rounded-2xl rounded-br-md bg-muted text-foreground text-sm shadow-sm transition-all duration-500 ${
+                className={`max-w-[260px] px-4 py-3 rounded-2xl rounded-br-sm bg-muted/80 text-foreground text-sm transition-all duration-500 ${
                   isBotMessageVisible(index) 
                     ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-3'
+                    : 'opacity-0 translate-y-2'
                 }`}
               >
                 {message.text}
@@ -93,7 +109,7 @@ const ChatAnimationSection = () => {
             <img
               src={chatImage}
               alt="Professional workspace"
-              className="w-[200px] md:w-[240px] h-auto rounded-xl object-cover shadow-lg"
+              className="w-[200px] md:w-[220px] h-auto rounded-xl object-cover"
             />
           </div>
 
@@ -102,16 +118,27 @@ const ChatAnimationSection = () => {
             {userMessages.map((message, index) => (
               <div
                 key={index}
-                className={`max-w-[280px] px-4 py-3 rounded-2xl rounded-bl-md bg-primary text-primary-foreground text-sm transition-all duration-500 ${
+                className={`max-w-[260px] px-4 py-3 rounded-2xl rounded-bl-sm bg-primary text-primary-foreground text-sm transition-all duration-500 ${
                   isUserMessageVisible(index) 
                     ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-3'
+                    : 'opacity-0 translate-y-2'
                 }`}
               >
                 {message.text}
               </div>
             ))}
           </div>
+        </div>
+
+        {/* CTA Link */}
+        <div className="mt-14 text-center">
+          <Link 
+            to="/ueber-mich" 
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+          >
+            Mehr über mich erfahren
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </Link>
         </div>
       </div>
     </section>
