@@ -3,12 +3,12 @@ import innovaoneLogo from '@/assets/innovaone-logo.png';
 
 const Footer = () => {
   return (
-    <footer className="relative py-16 section-alt">
+    <footer className="relative py-12 section-alt">
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="flex flex-col items-center gap-8">
+        <div className="flex flex-col items-center gap-6">
           {/* Logo */}
           <Link 
             to="/" 
