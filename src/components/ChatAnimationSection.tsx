@@ -66,27 +66,31 @@ const ChatAnimationSection = () => {
     }
 
     if (isResetting) {
+      // Fade out duration for chat bubbles, then restart
       const resetTimer = setTimeout(() => {
         setVisibleStep(0);
         setIsResetting(false);
-      }, 600);
+      }, 800);
       return () => clearTimeout(resetTimer);
     }
 
     if (visibleStep < messageSequence.length) {
+      // Slower timing: 1.1-1.4 seconds between messages
+      const delay = visibleStep === messageSequence.length - 1 ? 1800 : 1250;
       const timer = setTimeout(() => {
         setVisibleStep(prev => prev + 1);
-      }, 1200);
+      }, delay);
       return () => clearTimeout(timer);
     } else {
+      // Wait ~2.5 seconds after final message before fading out
       const pauseTimer = setTimeout(() => {
         setIsResetting(true);
-      }, 3000);
+      }, 2500);
       return () => clearTimeout(pauseTimer);
     }
   }, [visibleStep, isResetting, isInView]);
 
-  // Reset animation when leaving view
+  // Reset animation when leaving view (restarts when scrolling back)
   useEffect(() => {
     if (!isInView) {
       setVisibleStep(0);
@@ -124,11 +128,7 @@ const ChatAnimationSection = () => {
       />
       
       <div className="container relative mx-auto px-6 lg:px-12 max-w-6xl">
-        <div 
-          className={`relative flex justify-center items-center transition-opacity duration-500 ${
-            isResetting ? 'opacity-0' : 'opacity-100'
-          }`}
-        >
+        <div className="relative flex justify-center items-center">
           {/* Central Image */}
           <div className="relative">
             <img
@@ -140,7 +140,6 @@ const ChatAnimationSection = () => {
             {/* Soft overlay for better contrast */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/5 via-transparent to-black/5" />
             
-            {/* Bot Messages - Left Side with 10-20% Overlap */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[80%] md:-translate-x-[85%] flex flex-col gap-6 md:gap-8 items-end pr-2">
               {botMessages.map((message, index) => (
                 <div
@@ -150,10 +149,10 @@ const ChatAnimationSection = () => {
                     text-sm md:text-base font-medium
                     shadow-md shadow-black/5
                     border border-white/50
-                    transition-all duration-500 ease-out ${
+                    transition-all duration-700 ease-out ${
                     isBotMessageVisible(index) 
                       ? 'opacity-100 translate-x-0' 
-                      : 'opacity-0 -translate-x-6'
+                      : 'opacity-0 -translate-x-3'
                   }`}
                 >
                   {message.text}
@@ -161,7 +160,6 @@ const ChatAnimationSection = () => {
               ))}
             </div>
             
-            {/* User Messages - Right Side with 10-20% Overlap */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[80%] md:translate-x-[85%] flex flex-col gap-6 md:gap-8 items-start pl-2">
               {userMessages.map((message, index) => (
                 <div
@@ -171,10 +169,10 @@ const ChatAnimationSection = () => {
                     text-sm md:text-base font-medium
                     shadow-md shadow-primary/15
                     border border-primary/30
-                    transition-all duration-500 ease-out ${
+                    transition-all duration-700 ease-out ${
                     isUserMessageVisible(index) 
                       ? 'opacity-100 translate-x-0' 
-                      : 'opacity-0 translate-x-6'
+                      : 'opacity-0 translate-x-3'
                   }`}
                 >
                   {message.text}
