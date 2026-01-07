@@ -7,22 +7,43 @@ interface ChatMessage {
   text: string;
 }
 
-const chatSequence: ChatMessage[] = [
+const botMessages: ChatMessage[] = [
   { sender: 'bot', text: 'Hallo! Wie kann ich dir helfen?' },
-  { sender: 'user', text: 'Hallo, ich habe eine kurze Frage.' },
-  { sender: 'user', text: 'Wo bleibt meine Bestellung?' },
+  { sender: 'bot', text: 'Geht es um eine Bestellung oder eine allgemeine Frage?' },
   { sender: 'bot', text: 'Bitte gib deine Bestellnummer ein.' },
-  { sender: 'user', text: '17456983' },
+  { sender: 'bot', text: 'Danke! Ich prüfe den Status kurz …' },
   { sender: 'bot', text: 'Deine Bestellung ist unterwegs und kommt in 1–2 Werktagen 😊' },
 ];
 
+const userMessages: ChatMessage[] = [
+  { sender: 'user', text: 'Hallo, ich habe eine kurze Frage.' },
+  { sender: 'user', text: 'Ich wollte wissen, wo meine Bestellung bleibt.' },
+  { sender: 'user', text: 'Hier ist meine Bestellnummer:' },
+  { sender: 'user', text: '17456983' },
+  { sender: 'user', text: 'Super, danke für die schnelle Hilfe! ⭐⭐⭐⭐⭐' },
+];
+
+// Animation sequence: alternating bot and user messages
+const messageSequence = [
+  { side: 'bot', index: 0 },
+  { side: 'user', index: 0 },
+  { side: 'bot', index: 1 },
+  { side: 'user', index: 1 },
+  { side: 'bot', index: 2 },
+  { side: 'user', index: 2 },
+  { side: 'bot', index: 3 },
+  { side: 'user', index: 3 },
+  { side: 'bot', index: 4 },
+  { side: 'user', index: 4 },
+];
+
 const ChatAnimationSection = () => {
-  const [visibleCount, setVisibleCount] = useState(0);
+  const [visibleStep, setVisibleStep] = useState<number>(0);
   const [isResetting, setIsResetting] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Intersection Observer
+  // Intersection Observer for 50% visibility
   useEffect(() => {
     const element = sectionRef.current;
     if (!element) return;
@@ -31,148 +52,139 @@ const ChatAnimationSection = () => {
       ([entry]) => {
         setIsInView(entry.isIntersecting);
       },
-      { threshold: 0.4 }
+      { threshold: 0.5 }
     );
 
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
 
-  // Animation logic
+  // Animation logic - only runs when in view
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView) {
+      return;
+    }
 
     if (isResetting) {
       const resetTimer = setTimeout(() => {
-        setVisibleCount(0);
+        setVisibleStep(0);
         setIsResetting(false);
-      }, 500);
+      }, 600);
       return () => clearTimeout(resetTimer);
     }
 
-    if (visibleCount < chatSequence.length) {
-      const delay = visibleCount === 0 ? 400 : 500;
+    if (visibleStep < messageSequence.length) {
       const timer = setTimeout(() => {
-        setVisibleCount(prev => prev + 1);
-      }, delay);
+        setVisibleStep(prev => prev + 1);
+      }, 1200);
       return () => clearTimeout(timer);
     } else {
       const pauseTimer = setTimeout(() => {
         setIsResetting(true);
-      }, 2800);
+      }, 3000);
       return () => clearTimeout(pauseTimer);
     }
-  }, [visibleCount, isResetting, isInView]);
+  }, [visibleStep, isResetting, isInView]);
 
-  // Reset when leaving view
+  // Reset animation when leaving view
   useEffect(() => {
     if (!isInView) {
-      setVisibleCount(0);
+      setVisibleStep(0);
       setIsResetting(false);
     }
   }, [isInView]);
 
-  // Calculate vertical position for each message with proper gaps
-  const getMessageStyle = (index: number) => {
-    const baseGap = 28;
-    const switchGap = 12;
-    let offset = 0;
-    
-    for (let i = 0; i < index; i++) {
-      offset += baseGap;
-      if (chatSequence[i].sender !== chatSequence[i + 1]?.sender) {
-        offset += switchGap;
-      }
-    }
-    
-    return { transform: `translateY(${offset}px)` };
+  const isBotMessageVisible = (index: number) => {
+    if (isResetting) return false;
+    const stepIndex = messageSequence.findIndex(s => s.side === 'bot' && s.index === index);
+    return visibleStep > stepIndex;
   };
 
-  const isMessageVisible = (index: number) => {
+  const isUserMessageVisible = (index: number) => {
     if (isResetting) return false;
-    return visibleCount > index;
+    const stepIndex = messageSequence.findIndex(s => s.side === 'user' && s.index === index);
+    return visibleStep > stepIndex;
   };
 
   return (
     <section ref={sectionRef} className="relative py-20 md:py-32">
-      {/* Subtle background gradient */}
+      {/* Subtle vertical gradient background */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `linear-gradient(
             180deg, 
             hsl(var(--background)) 0%, 
-            hsl(var(--muted) / 0.15) 30%,
-            hsl(var(--muted) / 0.2) 50%,
-            hsl(var(--muted) / 0.15) 70%,
+            hsl(var(--muted) / 0.2) 25%,
+            hsl(var(--muted) / 0.3) 50%,
+            hsl(var(--muted) / 0.2) 75%,
             hsl(var(--background)) 100%
           )`
         }}
       />
       
       <div className="container relative mx-auto px-6 lg:px-12 max-w-6xl">
-        {/* Image container with overlapping messages */}
-        <div className="relative flex justify-center items-center min-h-[400px] md:min-h-[500px]">
-          {/* Static centered image - always visible */}
-          <img
-            src={chatImage}
-            alt="AI Chat Demo"
-            className="w-[300px] md:w-[380px] lg:w-[440px] h-auto rounded-2xl object-cover shadow-lg"
-          />
-          
-          {/* Bot Messages - Left, overlapping image */}
-          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[calc(100%+20px)] md:-translate-x-[calc(100%-30px)] lg:-translate-x-[calc(100%-60px)] flex flex-col items-end">
-            {chatSequence
-              .map((msg, idx) => ({ msg, idx }))
-              .filter(({ msg }) => msg.sender === 'bot')
-              .map(({ msg, idx }, displayIdx) => (
+        <div 
+          className={`relative flex justify-center items-center transition-opacity duration-500 ${
+            isResetting ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          {/* Central Image */}
+          <div className="relative">
+            <img
+              src={chatImage}
+              alt="Professional workspace"
+              className="w-[280px] md:w-[340px] lg:w-[400px] h-auto rounded-2xl object-cover shadow-xl"
+            />
+            
+            {/* Soft overlay for better contrast */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/5 via-transparent to-black/5" />
+            
+            {/* Bot Messages - Left Side with 10-20% Overlap */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[80%] md:-translate-x-[85%] flex flex-col gap-6 md:gap-8 items-end pr-2">
+              {botMessages.map((message, index) => (
                 <div
-                  key={idx}
-                  className={`max-w-[200px] md:max-w-[260px] lg:max-w-[300px] px-5 py-3.5 mb-7
-                    rounded-2xl rounded-br-md 
-                    bg-white/90 backdrop-blur-sm text-foreground 
+                  key={index}
+                  className={`max-w-[180px] md:max-w-[240px] lg:max-w-[280px] px-4 md:px-5 py-3 md:py-4 rounded-2xl rounded-br-md 
+                    bg-white/85 backdrop-blur-sm text-foreground 
                     text-sm md:text-base font-medium
-                    shadow-md shadow-black/8
-                    border border-white/60
-                    transition-all duration-400 ease-out ${
-                    isMessageVisible(idx) 
+                    shadow-md shadow-black/5
+                    border border-white/50
+                    transition-all duration-500 ease-out ${
+                    isBotMessageVisible(index) 
                       ? 'opacity-100 translate-x-0' 
-                      : 'opacity-0 -translate-x-5'
+                      : 'opacity-0 -translate-x-6'
                   }`}
-                  style={{ transitionDelay: isMessageVisible(idx) ? '0ms' : '0ms' }}
                 >
-                  {msg.text}
+                  {message.text}
                 </div>
               ))}
-          </div>
-          
-          {/* User Messages - Right, overlapping image */}
-          <div className="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[20px] md:translate-x-[-30px] lg:translate-x-[-60px] flex flex-col items-start">
-            {chatSequence
-              .map((msg, idx) => ({ msg, idx }))
-              .filter(({ msg }) => msg.sender === 'user')
-              .map(({ msg, idx }, displayIdx) => (
+            </div>
+            
+            {/* User Messages - Right Side with 10-20% Overlap */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[80%] md:translate-x-[85%] flex flex-col gap-6 md:gap-8 items-start pl-2">
+              {userMessages.map((message, index) => (
                 <div
-                  key={idx}
-                  className={`max-w-[200px] md:max-w-[260px] lg:max-w-[300px] px-5 py-3.5 mb-7
-                    rounded-2xl rounded-bl-md 
+                  key={index}
+                  className={`max-w-[180px] md:max-w-[240px] lg:max-w-[280px] px-4 md:px-5 py-3 md:py-4 rounded-2xl rounded-bl-md 
                     bg-primary/90 backdrop-blur-sm text-primary-foreground 
                     text-sm md:text-base font-medium
                     shadow-md shadow-primary/15
-                    border border-primary/40
-                    transition-all duration-400 ease-out ${
-                    isMessageVisible(idx) 
+                    border border-primary/30
+                    transition-all duration-500 ease-out ${
+                    isUserMessageVisible(index) 
                       ? 'opacity-100 translate-x-0' 
-                      : 'opacity-0 translate-x-5'
+                      : 'opacity-0 translate-x-6'
                   }`}
                 >
-                  {msg.text}
+                  {message.text}
                 </div>
               ))}
+            </div>
           </div>
         </div>
 
-        {/* CTA Link */}
+        {/* CTA Link - Below the animated section */}
         <div className="mt-16 md:mt-20 text-center">
           <Link 
             to="/ueber-mich" 
