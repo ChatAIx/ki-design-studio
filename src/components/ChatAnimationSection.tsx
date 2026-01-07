@@ -145,10 +145,10 @@ const ChatAnimationSection = () => {
                 <div
                   key={index}
                   className={`max-w-[180px] md:max-w-[240px] lg:max-w-[280px] px-4 md:px-5 py-3 md:py-4 rounded-2xl rounded-br-md 
-                    bg-white/85 backdrop-blur-sm text-foreground 
+                    bg-white/70 backdrop-blur-[2px] text-foreground/90
                     text-sm md:text-base font-medium
-                    shadow-md shadow-black/5
-                    border border-white/50
+                    shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)]
+                    border border-white/30
                     transition-all duration-700 ease-out ${
                     isBotMessageVisible(index) 
                       ? 'opacity-100 translate-x-0' 
@@ -165,10 +165,10 @@ const ChatAnimationSection = () => {
                 <div
                   key={index}
                   className={`max-w-[180px] md:max-w-[240px] lg:max-w-[280px] px-4 md:px-5 py-3 md:py-4 rounded-2xl rounded-bl-md 
-                    bg-primary/90 backdrop-blur-sm text-primary-foreground 
+                    bg-primary/75 backdrop-blur-[2px] text-primary-foreground/95
                     text-sm md:text-base font-medium
-                    shadow-md shadow-primary/15
-                    border border-primary/30
+                    shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]
+                    border border-primary/20
                     transition-all duration-700 ease-out ${
                     isUserMessageVisible(index) 
                       ? 'opacity-100 translate-x-0' 
