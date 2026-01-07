@@ -23,10 +23,15 @@ const WorkSection = () => {
   return (
     <section 
       ref={ref}
-      className="relative py-32 md:py-40 section-alt"
+      className="relative pt-32 md:pt-40 pb-16 md:pb-24 section-alt"
     >
       {/* Subtle top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      
+      {/* Soft gradient fade to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{
+        background: `linear-gradient(180deg, transparent 0%, hsl(var(--background)) 100%)`
+      }} />
       
       <div className="container mx-auto px-6 lg:px-12 max-w-5xl">
         <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -66,16 +71,6 @@ const WorkSection = () => {
             ))}
           </div>
           
-          {/* CTA */}
-          <div className="mt-16 pt-12 border-t border-border/50">
-            <Link 
-              to="/ueber-mich"
-              className="inline-flex items-center gap-3 text-primary hover:text-foreground transition-colors duration-300 group"
-            >
-              <span className="text-lg tracking-wide">Mehr über mich erfahren</span>
-              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
-            </Link>
-          </div>
         </div>
       </div>
     </section>
