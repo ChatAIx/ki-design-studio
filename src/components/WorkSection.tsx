@@ -23,15 +23,10 @@ const WorkSection = () => {
   return (
     <section 
       ref={ref}
-      className="relative pt-32 md:pt-40 pb-16 md:pb-24 section-alt"
+      className="relative pt-32 md:pt-40 pb-8 md:pb-12 section-alt"
     >
       {/* Subtle top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      
-      {/* Soft gradient fade to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{
-        background: `linear-gradient(180deg, transparent 0%, hsl(var(--background)) 100%)`
-      }} />
       
       <div className="container mx-auto px-6 lg:px-12 max-w-5xl">
         <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
