@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import chatImage from '@/assets/chat-demo-background.jpg';
 interface ChatMessage {
   sender: 'bot' | 'user';
@@ -135,15 +136,15 @@ const ChatAnimationSection = () => {
     const stepIndex = messageSequence.findIndex(s => s.side === 'user' && s.index === index);
     return visibleStep > stepIndex;
   };
-  return <section ref={sectionRef} className="relative py-20 md:py-32">
-      {/* Subtle vertical gradient background */}
+  return <section ref={sectionRef} className="relative pt-8 md:pt-12 pb-20 md:pb-32">
+      {/* Seamless gradient continuation from above section */}
       <div className="absolute inset-0 pointer-events-none" style={{
       background: `linear-gradient(
             180deg, 
             hsl(var(--background)) 0%, 
-            hsl(var(--muted) / 0.2) 25%,
-            hsl(var(--muted) / 0.3) 50%,
-            hsl(var(--muted) / 0.2) 75%,
+            hsl(var(--muted) / 0.15) 30%,
+            hsl(var(--muted) / 0.25) 60%,
+            hsl(var(--muted) / 0.15) 85%,
             hsl(var(--background)) 100%
           )`
     }} />
@@ -182,8 +183,14 @@ const ChatAnimationSection = () => {
         </div>
 
         {/* CTA Link - Below the animated section */}
-        <div className="mt-16 md:mt-20 text-center">
-          
+        <div className="mt-20 md:mt-28 text-center">
+          <Link 
+            to="/ueber-mich"
+            className="inline-flex items-center gap-3 text-primary hover:text-foreground transition-colors duration-300 group"
+          >
+            <span className="text-lg tracking-wide">Mehr über mich erfahren</span>
+            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
+          </Link>
         </div>
       </div>
     </section>;
