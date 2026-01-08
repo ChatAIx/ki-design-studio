@@ -136,24 +136,18 @@ const ChatAnimationSection = () => {
     const stepIndex = messageSequence.findIndex(s => s.side === 'user' && s.index === index);
     return visibleStep > stepIndex;
   };
-  return <section ref={sectionRef} className="relative pt-16 md:pt-20 pb-20 md:pb-32">
+  return <section ref={sectionRef} className="relative pt-8 md:pt-12 pb-20 md:pb-32">
       {/* Seamless gradient continuation from above section */}
       <div className="absolute inset-0 pointer-events-none" style={{
       background: `linear-gradient(
             180deg, 
-            hsl(var(--background)) 0%,
-            hsl(var(--muted) / 0.08) 15%,
-            hsl(var(--muted) / 0.18) 35%,
-            hsl(var(--muted) / 0.22) 55%,
-            hsl(var(--muted) / 0.15) 80%,
+            hsl(var(--background)) 0%, 
+            hsl(var(--muted) / 0.15) 30%,
+            hsl(var(--muted) / 0.25) 60%,
+            hsl(var(--muted) / 0.15) 85%,
             hsl(var(--background)) 100%
           )`
     }} />
-      
-      {/* Subtle radial glow behind the image for visual bridge */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none" style={{
-        background: `radial-gradient(ellipse at center top, hsl(var(--primary) / 0.04) 0%, transparent 70%)`
-      }} />
       
       <div className="container relative mx-auto px-6 lg:px-12 max-w-6xl">
         <div className="relative flex justify-center items-center">
