@@ -28,9 +28,14 @@ const WorkSection = () => {
       {/* Subtle top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       
-      {/* Soft gradient fade to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{
-        background: `linear-gradient(180deg, transparent 0%, hsl(var(--background)) 100%)`
+      {/* Enhanced gradient fade bridging to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none" style={{
+        background: `linear-gradient(180deg, transparent 0%, hsl(var(--background) / 0.3) 40%, hsl(var(--background) / 0.7) 70%, hsl(var(--background)) 100%)`
+      }} />
+      
+      {/* Subtle connecting element */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-24 pointer-events-none" style={{
+        background: `linear-gradient(180deg, transparent 0%, hsl(var(--primary) / 0.15) 50%, transparent 100%)`
       }} />
       
       <div className="container mx-auto px-6 lg:px-12 max-w-5xl">
